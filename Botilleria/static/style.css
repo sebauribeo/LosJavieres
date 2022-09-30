@@ -1,7 +1,12 @@
 body {
-    background: linear-gradient(rgb(0, 0, 0) 5%, rgba(253,236,45,1) 90%);
+    background: linear-gradient(rgb(0, 0, 0) 5%, rgb(255, 255, 255) 90%);
     box-sizing: content-box;
 }
+
+.navbar {
+    background: black;
+}
+
 h1 {
     color: white;
 }
@@ -29,4 +34,9 @@ h1 {
     box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
     border-radius: 25px;
     color: black;
+}
+
+.formLogIn {
+    border-radius: 25px;
+
 }
