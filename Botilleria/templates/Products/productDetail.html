@@ -1,0 +1,24 @@
+{% extends '../layout/base.html' %} {% block content %}
+
+<h1 class="text-center my-5">{{product.name}}</h1>
+
+<section class="container text-center">
+  <div class="card cardDetail">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <img src="{{product.image}}" class="card-img-top" alt="...">
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="card-body my-5">
+          <h3 class="card-text my-5">Marca: {{product.brand}}</h3>
+          <h3 class="card-text my-3">Detalles: {{product.details}}</h3>
+          <h3 class="card-text my-3">Stock: {{product.stock}}</h3>
+          <h3 class="card-text my-3">${{product.price}}</h3>
+          <a href="#" class="btn btn-primary mt-5">Añadir a carrito</a>
+          <a href="{% url 'products' %}" class="btn btn-primary mt-5">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+body {
+    background: linear-gradient(rgb(0, 0, 0) 5%, rgba(253,236,45,1) 90%);
+    box-sizing: content-box;
+}
+h1 {
+    color: white;
+}
+
+.img_card {
+    height: 300px;
+    border-radius: 25px;
+}
+
+.cardListProduct {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.cardDetail {
+    border: 3px solid black;
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
+    border-radius: 25px;
+    color: black;
+}
+
+.cardProduct {
+    height: 540px;
+    border: 3px solid black;
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
+    border-radius: 25px;
+    color: black;
+}
