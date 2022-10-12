@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(rgb(0, 0, 0) 5%, rgb(255, 255, 255) 90%);
+    background: linear-gradient(rgb(19, 19, 19) 10%, rgb(255, 255, 255) 90%);
     box-sizing: content-box;
 }
 
@@ -13,19 +13,14 @@ body {
 
 .imgNav {
     height: 55px;
-    background-color: white;
-    border-radius: 10px;
-    border: 2px solid white;
 }
 
 .imgNav:hover {
     transform: scaleY(1.1);
-    background: gray;
-    border: 2px solid gray;
 }
 
 .navbar {
-    background: black;
+    background: rgb(19, 19, 19);
 }
 
 .footer {
@@ -57,6 +52,7 @@ h1 {
     box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
     border-radius: 25px;
     color: black;
+    background: rgba(255, 255, 255, 0.834);
 }
 
 .cardProduct {
