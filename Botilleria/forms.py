@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, User
+from .models import Product
 
 
 class ProductForm(forms.ModelForm):
@@ -52,36 +52,36 @@ class ProductForm(forms.ModelForm):
         fields = ('name', 'image', 'price', 'stock', 'details', 'brand')
 
 
-class UserForm(forms.ModelForm):
+# class UserForm(forms.ModelForm):
 
-    name = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'form-control mt-2',
-            'type': 'text',
-            'placeholder': 'Ingresa tu nombre'
-        }
-    ))
-    lastName = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'form-control mt-2',
-            'type': 'text',
-            'placeholder': 'Ingresa tu apellido'
-        }
-    ))
-    email = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'form-control mt-2',
-            'type': 'email',
-            'placeholder': 'Ingresa el email'
-        }
-    ))
-    password = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'form-control mt-2',
-            'type': 'password',
-            'placeholder': 'Ingresa la contraseña'
-        }
-    ))
-    class Meta:
-        model = User
-        fields = ('name', 'lastName', 'email', 'password')
+#     name = forms.CharField(widget=forms.TextInput(
+#         attrs={
+#             'class': 'form-control mt-2',
+#             'type': 'text',
+#             'placeholder': 'Ingresa tu nombre'
+#         }
+#     ))
+#     lastName = forms.CharField(widget=forms.TextInput(
+#         attrs={
+#             'class': 'form-control mt-2',
+#             'type': 'text',
+#             'placeholder': 'Ingresa tu apellido'
+#         }
+#     ))
+#     email = forms.CharField(widget=forms.TextInput(
+#         attrs={
+#             'class': 'form-control mt-2',
+#             'type': 'email',
+#             'placeholder': 'Ingresa el email'
+#         }
+#     ))
+#     password = forms.CharField(widget=forms.TextInput(
+#         attrs={
+#             'class': 'form-control mt-2',
+#             'type': 'password',
+#             'placeholder': 'Ingresa la contraseña'
+#         }
+#     ))
+#     class Meta:
+#         model = User
+#         fields = ('name', 'lastName', 'email', 'password')

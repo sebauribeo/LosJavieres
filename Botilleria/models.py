@@ -12,14 +12,14 @@ class Product(models.Model):
     except Exception as e:
         print('Modelo no creado: ', e)
 
-class User(models.Model):
-    try:
-        name = models.CharField(min_lenght = 50)
-        lastName = models.CharField(min_lenght = 50)
-        email = models.CharField(min_lenght = 100, unique = True)
-        password = models.CharField(min_lenght = 100)
-    except Exception as e:
-        print('Modelo no creado: ', e)
+# class User(models.Model):
+#     try:
+#         name = models.CharField(min_lenght = 50)
+#         lastName = models.CharField(min_lenght = 50)
+#         email = models.CharField(min_lenght = 100, unique = True)
+#         password = models.CharField(min_lenght = 100)
+#     except Exception as e:
+#         print('Modelo no creado: ', e)
 
 # class promotionalProducts(models.Model):
 #     try:

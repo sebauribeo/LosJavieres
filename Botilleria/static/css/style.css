@@ -3,8 +3,39 @@ body {
     box-sizing: content-box;
 }
 
+.imgBackground {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    margin-top: 10%;
+    padding: 0 30px;
+}
+
+.imgNav {
+    height: 55px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.imgNav:hover {
+    transform: scaleY(1.1);
+    background: gray;
+    border: 2px solid gray;
+}
+
 .navbar {
     background: black;
+}
+
+.footer {
+    background: black;
+    width: 100%;
+    height: 200px;
+}
+
+.imgFooter {
+    width: 100%;
 }
 
 h1 {
