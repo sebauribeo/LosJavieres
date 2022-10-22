@@ -73,30 +73,45 @@ def deleteProduct(request, pk):
 
 
 def addCartProducts(request, pk):
-    cart = Cart(request)
-    product = Product.objects.get(id = pk)
-    cart.addProduct(product)
-    return redirect('products')
+    try:
+        cart = Cart(request)
+        product = Product.objects.get(id = pk)
+        cart.addProduct(product)
+        return redirect('products')
+    except Exception as e:
+        print('No se pudo agregar producto al carrito', e)
 
 def deleteCartProduct(request, pk):
-    cart = Cart(request)
-    product = Product.objects.get(id = pk)
-    cart.deleteCart(product)
-    return redirect('cart')
-
-def sumaCartProduct(request, pk):
-    cart = Cart(request)
-    product = Product.objects.get(id = pk)
-    cart.suma(product)
-    return redirect('cart')
-
-def subCartProduct(request, pk):
-    cart = Cart(request)
-    product = Product.objects.get(id = pk)
-    cart.restar(product)
-    return redirect('cart')
+    try:
+        cart = Cart(request)
+        product = Product.objects.get(id = pk)
+        cart.deleteCartProduct(product)
+        return redirect('cart')
+    except Exception as e:
+        print('No se pudo eliminar el producto', e)
+        
+def addQuantityProduct(request, pk):
+    try:
+        cart = Cart(request)
+        product = Product.objects.get(id = pk)
+        cart.addQuantityCartProduct(product)
+        return redirect('cart')
+    except Exception as e:
+        print('No se pudo aumentar la cantidad', e)
+        
+def subQuantityProduct(request, pk):
+    try:
+        cart = Cart(request)
+        product = Product.objects.get(id = pk)
+        cart.subQuantityCartProduct(product)
+        return redirect('cart')
+    except Exception as e:
+        print('No se pudo disminuir la cantidad', e)
 
 def cleanCart(request):
-    cart = Cart(request)
-    cart.clean()
-    return redirect('cart')
+    try:
+        cart = Cart(request)
+        cart.clearAllProducts()
+        return redirect('cart')
+    except Exception as e:
+        print('No se pudo limpiar el carrito', e)

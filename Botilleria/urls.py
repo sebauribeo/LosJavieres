@@ -18,6 +18,6 @@ urlpatterns = [
     path('products/send/<int:pk>', views.addCartProducts, name='send'),
     path('cart/deleteProduct/<int:pk>', views.deleteCartProduct, name='delete_cart_product'),
     path('cart/clearProduct/', views.cleanCart, name='clear'),
-    path('cart/add/<int:pk>', views.sumaCartProduct, name='add_quantity'),
-    path('cart/sub/<int:pk>', views.subCartProduct, name='sub_quantity'),
+    path('cart/add/<int:pk>', views.addQuantityProduct, name='add_quantity'),
+    path('cart/sub/<int:pk>', views.subQuantityProduct, name='sub_quantity'),
 ]

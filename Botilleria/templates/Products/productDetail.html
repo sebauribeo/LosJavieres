@@ -14,7 +14,7 @@
           <h3 class="card-text my-3">Detalles: {{product.details}}</h3>
           <h3 class="card-text my-3">Stock: {{product.stock}}</h3>
           <h3 class="card-text my-3">${{product.price}}</h3>
-          <a href="#" class="btn btn-primary mt-5">Añadir a carrito</a>
+          <a href="{% url 'send' product.id %}" class="btn btn-primary mt-5">Añadir a carrito</a>
           <a href="{% url 'products' %}" class="btn btn-primary mt-5">Volver</a>
         </div>
       </div>

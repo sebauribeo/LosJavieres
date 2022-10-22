@@ -1,6 +1,7 @@
 body {
     background: linear-gradient(rgb(19, 19, 19) 10%, rgb(255, 255, 255) 90%);
     box-sizing: content-box;
+    min-height: 100vh;
 }
 
 .imgBackground {

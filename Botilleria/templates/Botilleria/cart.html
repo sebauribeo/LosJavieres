@@ -1,7 +1,7 @@
 {% extends '../layout/base.html' %} 
 {% block content %}
 
-    <h1>Cart</h1>
+    <h1 class="text-center my-5">Carro de compras</h1>
 
     <div>
         <main class="container text-center">
@@ -22,8 +22,9 @@
                   <td>{{product.name}}</td>
                   <td>{{product.brand}}</td>
                   <td>
-                    <a href="{% url 'add_quantity' product.id %}" class="btn btn-dark btn-outline-success h1">+</a>
                     <a href="{% url 'sub_quantity' product.id %}" class="btn btn-dark btn-outline-danger h1">-</a>
+                    <span>{{product.units}}</span>
+                    <a href="{% url 'add_quantity' product.id %}" class="btn btn-dark btn-outline-success h1">+</a>
                   </td>
                   <td>$ {{product.price}}</td>
                   <td>
@@ -32,7 +33,7 @@
                       <button
                         type="submit"
                         class="btn btn-danger rounded-pill"
-                        >Eliminar</button>
+                        ><i class="fa-solid fa-trash-can me-2"></i>Eliminar</button>
                     </form>
                   </td>
                 </tr>
@@ -42,8 +43,13 @@
                 {% endif %}
               </tbody>
             </table>
+            <div>
+              <h1>Total:</h1>
+              <h3>${{totalPrice}}</h3>
+
+            </div>
             <div class="row text-center">
-              <div class="col-6"><a href="{% url 'clear' %}" class="btn btn-danger">Limpiar</a></div>
+              <div class="col-6"><a href="{% url 'clear' %}" class="btn btn-danger">Limpiar carro de compra</a></div>
               <div class="col-6"><a href="#" class="btn btn-success">Guardar</a></div>
           </div>
           </main>
