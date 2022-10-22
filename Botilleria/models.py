@@ -12,6 +12,15 @@ class Product(models.Model):
     except Exception as e:
         print('Modelo no creado: ', e)
 
+class CartProducts(models.Model):
+    try:
+        name = models.CharField(max_length = 50)
+        price = models.IntegerField()
+        brand = models.CharField(max_length = 50)
+        # user = models.CharField(max_length = 500)
+    except Exception as e:
+        print('Modelo no creado: ', e)
+
 # class User(models.Model):
 #     try:
 #         name = models.CharField(min_lenght = 50)

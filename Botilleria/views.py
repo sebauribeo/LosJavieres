@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from Botilleria.cart import Cart
 from Botilleria.forms import ProductForm
-from Botilleria.models import Product
+from Botilleria.models import CartProducts, Product
 
 # Create your views here.
 def home(request):
@@ -11,7 +12,8 @@ def products(request):
     return render(request, 'Botilleria/products.html', {'all_product': product})
 
 def cart(request):
-    return render(request, 'Botilleria/cart.html')
+    product = Product.objects.all()
+    return render(request, 'Botilleria/cart.html', {'all_product': product})
 
 def login(request):
     return render(request, 'Botilleria/login.html')
@@ -68,3 +70,33 @@ def deleteProduct(request, pk):
         return render(request, 'Products/deleteProduct.html', {'product': product})
     except Exception as e:
         print('Producto no eliminado ', e)
+
+
+def addCartProducts(request, pk):
+    cart = Cart(request)
+    product = Product.objects.get(id = pk)
+    cart.addProduct(product)
+    return redirect('products')
+
+def deleteCartProduct(request, pk):
+    cart = Cart(request)
+    product = Product.objects.get(id = pk)
+    cart.deleteCart(product)
+    return redirect('cart')
+
+def sumaCartProduct(request, pk):
+    cart = Cart(request)
+    product = Product.objects.get(id = pk)
+    cart.suma(product)
+    return redirect('cart')
+
+def subCartProduct(request, pk):
+    cart = Cart(request)
+    product = Product.objects.get(id = pk)
+    cart.restar(product)
+    return redirect('cart')
+
+def cleanCart(request):
+    cart = Cart(request)
+    cart.clean()
+    return redirect('cart')
