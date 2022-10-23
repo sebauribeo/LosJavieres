@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('administrator/', views.administrator, name='administrator'),
     path('login/', views.login, name='login'),
-#     VISTAS PRODUCTOS
+    #     VISTAS PRODUCTOS
     path('products/', views.products, name='products'),
     path('products/addProduct', views.addProduct, name='add_product'),
     path('products/productDetail/<int:pk>',
@@ -15,9 +15,10 @@ urlpatterns = [
     path('products/editProduct/<int:pk>',
          views.editProduct, name='edit_product'),
     path('products/send/<int:pk>', views.addCartProducts, name='send'),
-#     VISTAS CARRITO
+    #     VISTAS CARRITO
     path('cart/', views.cart, name='cart'),
-    path('cart/deleteProduct/<int:pk>', views.deleteCartProduct, name='delete_cart_product'),
+    path('cart/deleteProduct/<int:pk>',
+         views.deleteCartProduct, name='delete_cart_product'),
     path('cart/clearProduct/', views.cleanCart, name='clear'),
     path('cart/add/<int:pk>', views.addQuantityProduct, name='add_quantity'),
     path('cart/sub/<int:pk>', views.subQuantityProduct, name='sub_quantity'),

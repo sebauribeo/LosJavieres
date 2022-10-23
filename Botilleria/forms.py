@@ -1,6 +1,5 @@
 from django import forms
-from .models import CartProducts, Product
-
+from .models import Product
 
 
 class ProductForm(forms.ModelForm):
@@ -52,10 +51,6 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ('name', 'image', 'price', 'stock', 'details', 'brand')
 
-class CartProductsForm(forms.ModelForm):
-        class Meta:
-            model = CartProducts
-            fields = ('name', 'price', 'brand')
 
 # class UserForm(forms.ModelForm):
 

@@ -20,9 +20,9 @@ class Cart:
                     'id': product.id,
                     'name': product.name,
                     'price': product.price,
-                    'brand' : product.brand,
+                    'brand': product.brand,
                     'units': 1,
-                } 
+                }
             self.saveCart()
             print('Producto agregado al carrito', e)
         except Exception as e:
@@ -35,7 +35,7 @@ class Cart:
             print('Producto guardado en carrito')
         except Exception as e:
             print('Producto no guardado', e)
-    
+
     def deleteCartProduct(self, product):
         try:
             id = str(product.id)
@@ -52,7 +52,8 @@ class Cart:
             if id in self.cart.keys():
                 self.cart[id]['units'] -= 1
                 self.cart[id]['price'] -= product.price
-                if self.cart[id]["units"] <= 0: self.deleteCartProduct(product)
+                if self.cart[id]["units"] <= 0:
+                    self.deleteCartProduct(product)
                 self.saveCart()
             print('Cantidad agregada al producto')
         except Exception as e:
