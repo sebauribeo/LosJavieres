@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from Botilleria.cart import Cart
 from Botilleria.forms import ProductForm
 from Botilleria.models import CartProducts, Product
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -31,6 +32,7 @@ def addProduct(request):
             if form.is_valid():
                 product = form.save(commit = False)
                 product.save()
+                messages.success(request, 'Producto agregado...')
                 return redirect('administrator')
         else:
             form = ProductForm()
@@ -54,6 +56,7 @@ def editProduct(request, pk):
             if form.is_valid():
                 product = form.save(commit = False)
                 product.save()
+                messages.success(request, 'Producto modificado')
                 return redirect('administrator')
         else:
             form = ProductForm(instance = product)
@@ -66,6 +69,7 @@ def deleteProduct(request, pk):
         product = get_object_or_404(Product, pk = pk)
         if request.method == 'POST':
             product.delete()
+            messages.success(request, 'Producto eliminado')
             return redirect('administrator')
         return render(request, 'Products/deleteProduct.html', {'product': product})
     except Exception as e:
@@ -77,6 +81,7 @@ def addCartProducts(request, pk):
         cart = Cart(request)
         product = Product.objects.get(id = pk)
         cart.addProduct(product)
+        messages.success(request, 'Producto agregado al carro de compras')
         return redirect('products')
     except Exception as e:
         print('No se pudo agregar producto al carrito', e)
@@ -86,6 +91,7 @@ def deleteCartProduct(request, pk):
         cart = Cart(request)
         product = Product.objects.get(id = pk)
         cart.deleteCartProduct(product)
+        messages.success(request, 'Producto eliminado del carro de compras')
         return redirect('cart')
     except Exception as e:
         print('No se pudo eliminar el producto', e)
@@ -112,6 +118,7 @@ def cleanCart(request):
     try:
         cart = Cart(request)
         cart.clearAllProducts()
+        messages.success(request, 'Carro de compras limpio')
         return redirect('cart')
     except Exception as e:
         print('No se pudo limpiar el carrito', e)

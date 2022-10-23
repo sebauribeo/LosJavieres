@@ -72,7 +72,6 @@
         </div>
       </nav>
     </header>
-
     <main>
       <img
         class="imgBackground"
@@ -110,6 +109,21 @@
         </div>
       </div>
     </footer>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+    {% for m in messages %}
+      <script>
+        Swal.fire({
+          'title': 'Confirmación!!!',
+          'text': '{{m}}',
+          'icon': 'success',
+          'confirmButtonText': 'Aceptar',
+        })
+      </script>
+
+    {% endfor %}
+  {% endif %}
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
