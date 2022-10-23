@@ -75,7 +75,7 @@ def deleteProduct(request, pk):
     except Exception as e:
         print('Producto no eliminado ', e)
 
-
+# LOGICA CARRITO
 def addCartProducts(request, pk):
     try:
         cart = Cart(request)
