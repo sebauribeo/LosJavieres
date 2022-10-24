@@ -46,10 +46,17 @@ class ProductForm(forms.ModelForm):
             'placeholder': 'Ingresa la marca del producto'
         }
     ))
+    category = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'text',
+            'placeholder': 'Ingresa la categoria del producto'
+        }
+    ))
 
     class Meta:
         model = Product
-        fields = ('name', 'image', 'price', 'stock', 'details', 'brand')
+        fields = ('name', 'image', 'price', 'stock', 'details', 'brand', 'category')
 
 
 # class UserForm(forms.ModelForm):
