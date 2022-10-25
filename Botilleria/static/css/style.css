@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(rgb(19, 19, 19) 10%, rgb(255, 255, 255) 90%);
+    background: linear-gradient(rgb(19, 19, 19) 10%, rgb(147, 0, 0) 90%);
     box-sizing: content-box;
     min-height: 100vh;
 }
@@ -27,7 +27,7 @@ body {
 .footer {
     background: black;
     width: 100%;
-    height: 200px;
+    height: 230px;
 }
 
 .imgFooter {
@@ -67,4 +67,9 @@ h1 {
 .formLogIn {
     border-radius: 25px;
 
+}
+
+.imgCarousel {
+    width: 100%;
+    height: 18rem;
 }

@@ -1,14 +1,24 @@
+from cmath import log
 from django.shortcuts import get_object_or_404, redirect, render
 from Botilleria.cart import Cart
 from Botilleria.forms import ProductForm
 from Botilleria.models import Product
 from django.contrib import messages
-
-# Create your views here.
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
-    return render(request, 'Botilleria/home.html')
+    product = Product.objects.filter(category = 'Promo')
+    # paginator = Paginator(product, 4)
+    # page = request.GET.get('page', '1')
+    # page_obj = paginator.page(page)
+    # print('LOG product', product)
+    # print('LOG page', page)
+    # print('LOG paginator', paginator)
+    # print('LOG page_obj', page_obj)
+
+
+    return render(request, 'Botilleria/home.html', {'promo': product})
 
 
 def products(request):

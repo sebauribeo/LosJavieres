@@ -2,13 +2,17 @@ from django.db import models
 
 class Product(models.Model):
     try:
-        name = models.CharField(max_length=50)
+        name = models.CharField(max_length=100)
         image = models.CharField(max_length=500)
         price = models.IntegerField()
-        stock = models.CharField(max_length=32)
+        stock = models.IntegerField()
         details = models.CharField(max_length=500)
         brand = models.CharField(max_length=50)
         category = models.CharField(max_length=100)
+
+        class Meta:
+            ordering = ['id']
+
     except Exception as e:
         print('Modelo no creado: ', e)
 

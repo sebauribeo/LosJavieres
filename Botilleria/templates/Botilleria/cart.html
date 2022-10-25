@@ -1,7 +1,7 @@
 {% extends '../layout/base.html' %} 
 {% block content %}
 
-    <h1 class="text-center my-5">Carro de compras<i class="fa-solid fa-cart-shopping ms-3"></i></h1>
+    <h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0">Carro de compras<i class="fa-solid fa-cart-shopping ms-3"></i></h1>
 
         <main class="container text-center">
             <table class="table table-dark my-5">
@@ -47,7 +47,7 @@
                 <div class="card-body">
                   <div class="row text-center p-5">
                     <div class="col-4">
-                      <h1 class="card-title">Total Compra</h1>
+                      <h1 class="card-title border-bottom border-5 border-warning">Total Compra</h1>
                       <h2 class="card-text">$ {{totalPrice}}</h2>
                     </div>
                     <div class="col-4 my-auto"><a href="{% url 'clear' %}" class="btn btn-primary">Limpiar carro de compra</a></div>

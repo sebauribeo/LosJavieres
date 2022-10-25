@@ -1,6 +1,6 @@
 {% extends '../layout/base.html' %} {% block content %}
 
-<h1 class="text-center my-5">Productos</h1>
+<h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0">Productos</h1>
 
 <section class="container">
   <div class="row">
@@ -17,11 +17,17 @@
         <div class="card-body">
           <h5 class="card-title">{{product.name}}</h5>
           <h3 class="card-text mt-3">$ {{product.price}}</h3>
+          {% if product.stock > 0 %}
           <a
             href="{% url 'send' product.id %}"
             class="btn btn-success rounded-pill mt-4"
-            ><i class="fa-solid fa-cart-shopping me-3"></i>Añadir al carrito</a
-          >
+            ><i class="fa-solid fa-cart-shopping me-3"></i>Añadir al carrito</a>
+          {% else %}
+          <a
+          href=""
+          class="btn btn-danger rounded-pill mt-4"
+          ><i class="fa-solid fa-cart-shopping me-3"></i>Sin Stock</a>
+          {% endif %}
         </div>
       </div>
     </div>

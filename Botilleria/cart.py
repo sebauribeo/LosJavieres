@@ -24,7 +24,6 @@ class Cart:
                     'units': 1,
                 }
             self.saveCart()
-            print('Producto agregado al carrito', e)
         except Exception as e:
             print('Producto no agregado', e)
 
@@ -32,7 +31,6 @@ class Cart:
         try:
             self.session['cart'] = self.cart
             self.session.modified = True
-            print('Producto guardado en carrito')
         except Exception as e:
             print('Producto no guardado', e)
 
@@ -55,7 +53,6 @@ class Cart:
                 if self.cart[id]["units"] <= 0:
                     self.deleteCartProduct(product)
                 self.saveCart()
-            print('Cantidad agregada al producto')
         except Exception as e:
             print('No se pudo aumentar la cantidad', e)
 
@@ -66,7 +63,6 @@ class Cart:
                 self.cart[id]['units'] += 1
                 self.cart[id]['price'] += product.price
                 self.saveCart()
-            print('Se disminuyo la cantidad del producto')
         except Exception as e:
             print('No se disminuyo la cantidad del producto', e)
 
@@ -74,6 +70,5 @@ class Cart:
         try:
             self.session['cart'] = {}
             self.session.modified = True
-            print('Carrito limpiado')
         except Exception as e:
             print('No se pudo limpiar el carrito', e)
