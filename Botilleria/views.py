@@ -31,13 +31,21 @@ def Products(request):
     allProduct = Product.objects.all()
     beers = Product.objects.filter(category = 'Cerveza')
     wines = Product.objects.filter(category = 'Vino')
-    distilled = Product.objects.filter(category = 'Destilado')
+    whiskey = Product.objects.filter(category = 'Whisky')
+    pisco = Product.objects.filter(category = 'Pisco')
+    ron = Product.objects.filter(category = 'Ron')
+    beverage = Product.objects.filter(category = 'Bebida')
+    others = Product.objects.filter(category = 'Otro')
 
     context = {
         'allProduct': allProduct,
         'beers': beers,
         'wines': wines,
-        'distilled': distilled,
+        'whiskey': whiskey,
+        'pisco': pisco,
+        'ron': ron,
+        'beverage': beverage,
+        'others': others,
     }
 
     return render(request, 'Botilleria/products.html', context)

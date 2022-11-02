@@ -2,16 +2,28 @@
 
 <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="btn btn-warning text-dark border border-3 border-light mx-4 active" id="pills-allProducts-tab" data-bs-toggle="pill" data-bs-target="#pills-allProducts" type="button" role="tab" aria-controls="pills-allProducts" aria-selected="false">Todos los productos</button>
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill active" id="pills-allProducts-tab" data-bs-toggle="pill" data-bs-target="#pills-allProducts" type="button" role="tab" aria-controls="pills-allProducts" aria-selected="false">Todos los productos</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="btn btn-warning text-dark border border-3 border-light mx-4" id="pills-beer-tab" data-bs-toggle="pill" data-bs-target="#pills-beer" type="button" role="tab" aria-controls="pills-beer" aria-selected="false">Cervezas</button>
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-beer-tab" data-bs-toggle="pill" data-bs-target="#pills-beer" type="button" role="tab" aria-controls="pills-beer" aria-selected="false">Cervezas</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="btn btn-warning text-dark border border-3 border-light mx-4" id="pills-wines-tab" data-bs-toggle="pill" data-bs-target="#pills-wines" type="button" role="tab" aria-controls="pills-wines" aria-selected="false">Vinos</button>
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-wines-tab" data-bs-toggle="pill" data-bs-target="#pills-wines" type="button" role="tab" aria-controls="pills-wines" aria-selected="false">Vinos</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="btn btn-warning text-dark border border-3 border-light mx-4" id="pills-distilled-tab" data-bs-toggle="pill" data-bs-target="#pills-distilled" type="button" role="tab" aria-controls="pills-distilled" aria-selected="false">Destilados</button>
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-ron-tab" data-bs-toggle="pill" data-bs-target="#pills-ron" type="button" role="tab" aria-controls="pills-ron" aria-selected="false">Ron</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-pisco-tab" data-bs-toggle="pill" data-bs-target="#pills-pisco" type="button" role="tab" aria-controls="pills-pisco" aria-selected="false">Pisco</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-whiskey-tab" data-bs-toggle="pill" data-bs-target="#pills-whiskey" type="button" role="tab" aria-controls="pills-whiskey" aria-selected="false">Whisky</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-beverage-tab" data-bs-toggle="pill" data-bs-target="#pills-beverage" type="button" role="tab" aria-controls="pills-beverage" aria-selected="false">Bebidas</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-others-tab" data-bs-toggle="pill" data-bs-target="#pills-others" type="button" role="tab" aria-controls="pills-others" aria-selected="false">Otros</button>
   </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
@@ -126,11 +138,159 @@
       </div>
     </section>
   </div>
-  <div class="tab-pane fade" id="pills-distilled" role="tabpanel" aria-labelledby="pills-distilled-tab" tabindex="0">
-    <h1 class="container text-center my-3 border border-5 border-warning border-start-0 border-end-0 p-1">Destilados</h1>
+  <div class="tab-pane fade" id="pills-ron" role="tabpanel" aria-labelledby="pills-ron-tab" tabindex="0">
+    <h1 class="container text-center my-3 border border-5 border-warning border-start-0 border-end-0 p-1">Ron's</h1>
     <section class="container">
       <div class="row">
-        {% for product in distilled %}
+        {% for product in ron %}
+        <div class="mt-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="card cardProduct text-center">
+            <a href="{% url 'product_detail' pk=product.id %}">
+              <img
+                src="{{product.image}}"
+                class="card-img-top img_card"
+                alt="..."
+              />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <h3 class="card-text mt-3">$ {{product.price}}</h3>
+              {% if product.stock > 0 %}
+              <a
+                href="{% url 'send' product.id %}"
+                class="btn btn-success rounded-pill mt-4"
+                ><i class="fa-solid fa-cart-shopping me-3"></i>Añadir al carrito</a>
+              {% else %}
+              <a
+              href=""
+              class="btn btn-danger rounded-pill mt-4"
+              ><i class="fa-solid fa-cart-shopping me-3"></i>Sin Stock</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <h1 class="text-center m-5">No hay Productos agregados</h1>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+  <div class="tab-pane fade" id="pills-pisco" role="tabpanel" aria-labelledby="pills-pisco-tab" tabindex="0">
+    <h1 class="container text-center my-3 border border-5 border-warning border-start-0 border-end-0 p-1">Piscos</h1>
+    <section class="container">
+      <div class="row">
+        {% for product in pisco %}
+        <div class="mt-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="card cardProduct text-center">
+            <a href="{% url 'product_detail' pk=product.id %}">
+              <img
+                src="{{product.image}}"
+                class="card-img-top img_card"
+                alt="..."
+              />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <h3 class="card-text mt-3">$ {{product.price}}</h3>
+              {% if product.stock > 0 %}
+              <a
+                href="{% url 'send' product.id %}"
+                class="btn btn-success rounded-pill mt-4"
+                ><i class="fa-solid fa-cart-shopping me-3"></i>Añadir al carrito</a>
+              {% else %}
+              <a
+              href=""
+              class="btn btn-danger rounded-pill mt-4"
+              ><i class="fa-solid fa-cart-shopping me-3"></i>Sin Stock</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <h1 class="text-center m-5">No hay Productos agregados</h1>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+  <div class="tab-pane fade" id="pills-whiskey" role="tabpanel" aria-labelledby="pills-whiskey-tab" tabindex="0">
+    <h1 class="container text-center my-3 border border-5 border-warning border-start-0 border-end-0 p-1">Whisky's</h1>
+    <section class="container">
+      <div class="row">
+        {% for product in whiskey %}
+        <div class="mt-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="card cardProduct text-center">
+            <a href="{% url 'product_detail' pk=product.id %}">
+              <img
+                src="{{product.image}}"
+                class="card-img-top img_card"
+                alt="..."
+              />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <h3 class="card-text mt-3">$ {{product.price}}</h3>
+              {% if product.stock > 0 %}
+              <a
+                href="{% url 'send' product.id %}"
+                class="btn btn-success rounded-pill mt-4"
+                ><i class="fa-solid fa-cart-shopping me-3"></i>Añadir al carrito</a>
+              {% else %}
+              <a
+              href=""
+              class="btn btn-danger rounded-pill mt-4"
+              ><i class="fa-solid fa-cart-shopping me-3"></i>Sin Stock</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <h1 class="text-center m-5">No hay Productos agregados</h1>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+  <div class="tab-pane fade" id="pills-beverage" role="tabpanel" aria-labelledby="pills-beverage-tab" tabindex="0">
+    <h1 class="container text-center my-3 border border-5 border-warning border-start-0 border-end-0 p-1">Bebidas</h1>
+    <section class="container">
+      <div class="row">
+        {% for product in beverage %}
+        <div class="mt-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="card cardProduct text-center">
+            <a href="{% url 'product_detail' pk=product.id %}">
+              <img
+                src="{{product.image}}"
+                class="card-img-top img_card"
+                alt="..."
+              />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <h3 class="card-text mt-3">$ {{product.price}}</h3>
+              {% if product.stock > 0 %}
+              <a
+                href="{% url 'send' product.id %}"
+                class="btn btn-success rounded-pill mt-4"
+                ><i class="fa-solid fa-cart-shopping me-3"></i>Añadir al carrito</a>
+              {% else %}
+              <a
+              href=""
+              class="btn btn-danger rounded-pill mt-4"
+              ><i class="fa-solid fa-cart-shopping me-3"></i>Sin Stock</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <h1 class="text-center m-5">No hay Productos agregados</h1>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+  <div class="tab-pane fade" id="pills-others" role="tabpanel" aria-labelledby="pills-others-tab" tabindex="0">
+    <h1 class="container text-center my-3 border border-5 border-warning border-start-0 border-end-0 p-1">Otros</h1>
+    <section class="container">
+      <div class="row">
+        {% for product in others %}
         <div class="mt-3 col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
           <div class="card cardProduct text-center">
             <a href="{% url 'product_detail' pk=product.id %}">
