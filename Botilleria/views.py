@@ -4,26 +4,11 @@ from Botilleria.cart import Cart
 from Botilleria.forms import ProductForm
 from Botilleria.models import Product
 from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
     product = Product.objects.filter(category = 'Promo')
-    # paginator = Paginator(product, 4)
-    # page = request.GET.get('page', '1')
-    # page_obj = paginator.page(page)
-    # print('LOG product', product)
-    # print('LOG page', page)
-    # print('LOG paginator', paginator)
-    # print('LOG page_obj', page_obj)
-
-
     return render(request, 'Botilleria/home.html', {'promo': product})
-
-
-def products(request):
-    product = Product.objects.all()
-    return render(request, 'Botilleria/products.html', {'all_product': product})
 
 
 def cart(request):
@@ -40,6 +25,22 @@ def administrator(request):
     return render(request, 'Botilleria/admin.html', {'all_product': product})
 
 # CRUD PRODUCTS
+
+
+def Products(request):
+    allProduct = Product.objects.all()
+    beers = Product.objects.filter(category = 'Cerveza')
+    wines = Product.objects.filter(category = 'Vino')
+    distilled = Product.objects.filter(category = 'Destilado')
+
+    context = {
+        'allProduct': allProduct,
+        'beers': beers,
+        'wines': wines,
+        'distilled': distilled,
+    }
+
+    return render(request, 'Botilleria/products.html', context)
 
 
 def addProduct(request):

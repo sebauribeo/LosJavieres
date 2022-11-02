@@ -1,75 +1,104 @@
 body {
-    background: linear-gradient(rgb(19, 19, 19) 10%, rgb(147, 0, 0) 90%);
-    box-sizing: content-box;
-    min-height: 100vh;
+  background: linear-gradient(rgb(19, 19, 19) 10%, rgb(223, 194, 1) 90%);
+  box-sizing: content-box;
+  min-height: 100vh;
 }
 
 .imgBackground {
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    margin-top: 10%;
-    padding: 0 30px;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  margin-top: 10%;
+  padding: 0 30px;
 }
 
 .imgNav {
-    height: 55px;
+  height: 55px;
 }
 
 .imgNav:hover {
-    transform: scaleY(1.1);
+  transform: scaleY(1.1);
 }
 
 .navbar {
-    background: rgb(19, 19, 19);
+  background: rgb(19, 19, 19);
 }
 
 .footer {
-    background: black;
-    width: 100%;
-    height: 230px;
+  background: black;
+  width: 100%;
+  height: 230px;
 }
 
 .imgFooter {
-    width: 80%;
+  width: 80%;
 }
 
 h1 {
-    color: white;
+  color: white;
 }
 
 .img_card {
-    height: 300px;
-    border-radius: 25px;
+  height: 300px;
+  border-radius: 25px;
 }
 
 .cardListProduct {
-    width: 100%;
-    border-radius: 25px;
+  width: 100%;
+  border-radius: 25px;
 }
 
 .cardDetail {
-    border: 3px solid black;
-    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
-    border-radius: 25px;
-    color: black;
-    background: rgba(255, 255, 255, 0.834);
+  border: 3px solid black;
+  box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
+  border-radius: 25px;
+  color: black;
+  background: rgba(255, 255, 255, 0.834);
 }
 
 .cardProduct {
-    height: 540px;
-    border: 3px solid black;
-    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
-    border-radius: 25px;
-    color: black;
+  height: 540px;
+  border: 3px solid black;
+  box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.621);
+  border-radius: 25px;
+  color: black;
 }
 
 .formLogIn {
-    border-radius: 25px;
-
+  border-radius: 25px;
 }
 
 .imgCarousel {
-    width: 100%;
-    height: 18rem;
+  width: 100%;
+  height: 25rem;
+}
+
+.productOffers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  font-family: monospace;
+}
+
+.cardOffers {
+  display: flex;
+  overflow: auto;
+  flex: none;
+}
+
+.cardOffers.x {
+  width: 100%;
+  height: 600px;
+  flex-flow: row nowrap;
+}
+
+.x.mandatory-scroll-snapping {
+  scroll-snap-type: x mandatory;
+}
+
+.cardOffers > div {
+  text-align: center;
+  scroll-snap-align: center;
+  flex: none;
 }

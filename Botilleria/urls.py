@@ -6,7 +6,7 @@ urlpatterns = [
     path('administrator/', views.administrator, name='administrator'),
     path('login/', views.login, name='login'),
     #     VISTAS PRODUCTOS
-    path('products/', views.products, name='products'),
+    path('products/', views.Products, name='products'),
     path('products/addProduct', views.addProduct, name='add_product'),
     path('products/productDetail/<int:pk>',
          views.detailProduct, name='product_detail'),
