@@ -36,7 +36,6 @@ def Products(request):
     ron = Product.objects.filter(category = 'Ron')
     beverage = Product.objects.filter(category = 'Bebida')
     others = Product.objects.filter(category = 'Otro')
-
     context = {
         'allProduct': allProduct,
         'beers': beers,
@@ -47,7 +46,6 @@ def Products(request):
         'beverage': beverage,
         'others': others,
     }
-
     return render(request, 'Botilleria/products.html', context)
 
 

@@ -51,7 +51,14 @@
                 <a class="nav-link active" href="{% url 'login' %}">Log in</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'cart' %}">Carro de compras</a>
+                <a class="nav-link active" href="{% url 'cart' %}">Carro de compras
+                  {% if request.session.cart.items %}
+                  <span class="position-absolute top-3 translate-middle badge rounded-pill bg-danger">
+                    {{request.session.cart|length}}
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                  {% endif %}
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'administrator' %}">Admin</a>

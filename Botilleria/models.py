@@ -27,14 +27,6 @@ class Product(models.Model):
 #     except Exception as e:
 #         print('Modelo no creado: ', e)
 
-# class Promotions(models.Model):
-#     try:
-#         image = models.CharField(min_lenght = 500)
-#         product = models.CharField(min_lenght = 100)
-#         price = models.IntegerField()
-#         quantity = models.IntegerField()
-#     except Exception as e:
-#         print('Modelo no creado: ', e)
 
 # class Sold_products(models.Model):
 #     try:
