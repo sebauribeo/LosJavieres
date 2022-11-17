@@ -4,7 +4,10 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('administrator/', views.administrator, name='administrator'),
+    path('administrator/editUser/<int:pk>',views.editUser, name='edit_user'),
+    path('administrator/deleteUser/<int:pk>',views.deleteUser, name='delete_user'),
     path('login/', views.login, name='login'),
+    path('login/new-user', views.newUser, name='new-user'),
     #     VISTAS PRODUCTOS
     path('products/', views.Products, name='products'),
     path('products/addProduct', views.addProduct, name='add_product'),

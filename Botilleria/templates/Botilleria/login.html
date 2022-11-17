@@ -3,8 +3,8 @@
 
     <h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1">Log In</h1>
     <section class="container">
-        <button type="submit" class="btn btn-success rounded-pill w-100 my-5">Registrate</button>
-        <form class="rounded p-5 bg-dark text-white">
+        <a type="submit" class="btn btn-success rounded-pill w-100 my-5" href="{% url 'new-user' %}">Registrate</a>
+        <form class="rounded p-5 bg-dark text-white" method="POST">
             <h2 class="text-center my-3">Ingresa tu mail de usuario y contraseña</h2>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email</label>

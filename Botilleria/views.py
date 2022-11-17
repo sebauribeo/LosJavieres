@@ -1,10 +1,11 @@
 from cmath import log
 from django.shortcuts import get_object_or_404, redirect, render
 from Botilleria.cart import Cart
-from Botilleria.forms import ProductForm
-from Botilleria.models import Product
+from Botilleria.forms import ProductForm, UserForm
+from Botilleria.models import Product, User
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, logout
 
 def home(request):
     product = Product.objects.filter(category = 'Promo')
@@ -20,9 +21,16 @@ def login(request):
     return render(request, 'Botilleria/login.html')
 
 
+
 def administrator(request):
-    product = Product.objects.all()
-    return render(request, 'Botilleria/admin.html', {'all_product': product})
+    products = Product.objects.all()
+    users = User.objects.all()
+
+    context = {
+        'products': products,
+        'users': users
+    }
+    return render(request, 'Botilleria/admin.html', context)
 
 # CRUD PRODUCTS
 
@@ -48,7 +56,7 @@ def Products(request):
     }
     return render(request, 'Botilleria/products.html', context)
 
-
+# @login_required
 def addProduct(request):
     try:
         if request.method == 'POST':
@@ -72,7 +80,7 @@ def detailProduct(request, pk):
     except Exception as e:
         print('El producto seleccionado no se actualizo', e)
 
-
+# @login_required
 def editProduct(request, pk):
     try:
         product = get_object_or_404(Product, pk=pk)
@@ -89,7 +97,7 @@ def editProduct(request, pk):
     except Exception as e:
         print('producto no editado', e)
 
-
+# @login_required
 def deleteProduct(request, pk):
     try:
         product = get_object_or_404(Product, pk=pk)
@@ -97,7 +105,7 @@ def deleteProduct(request, pk):
             product.delete()
             messages.success(request, 'Producto eliminado')
             return redirect('administrator')
-        return render(request, 'Products/deleteProduct.html', {'product': product})
+        return render(request, {'product': product})
     except Exception as e:
         print('Producto no eliminado ', e)
 
@@ -154,3 +162,52 @@ def cleanCart(request):
         return redirect('cart')
     except Exception as e:
         print('No se pudo limpiar el carrito', e)
+
+
+def signOut(request):
+    logout(request)
+    return redirect('home')
+
+def newUser(request):
+    try:
+        print('log', request.POST)
+        if request.method == 'POST':
+            form = UserForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit = False)
+                user.save()
+                messages.success(request, 'Usuario agregado...')
+                return redirect('home')
+        else:
+            form = UserForm()
+        return render(request, 'User/newUser.html', {'form': form})
+    except Exception as e:
+        print('Error en user', e) 
+
+def editUser(request, pk):
+    try:
+        user = get_object_or_404(User, pk=pk)
+        if request.method == 'POST':
+            form = UserForm(request.POST, instance=user)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.save()
+                messages.success(request, 'Usuario modificado')
+                return redirect('administrator')
+        else:
+            form = UserForm(instance=user)
+        return render(request, 'User/editUser.html', {'form': form})
+    except Exception as e:
+        print('producto no editado', e)
+
+
+def deleteUser(request, pk):
+    try:
+        user = get_object_or_404(User, pk=pk)
+        if request.method == 'POST':
+            user.delete()
+            messages.success(request, 'Usuario eliminado')
+            return redirect('administrator')
+        return render(request, {'user': user})
+    except Exception as e:
+        print('Producto no eliminado ', e)
