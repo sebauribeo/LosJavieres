@@ -1,5 +1,7 @@
 from django import forms
-from .models import Product, User
+from .models import Product
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 
 
 class ProductForm(forms.ModelForm):
@@ -56,12 +58,13 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('name', 'image', 'price', 'stock', 'details', 'brand', 'category')
+        fields = ('name', 'image', 'price', 'stock',
+                  'details', 'brand', 'category')
 
 
 class UserForm(forms.ModelForm):
 
-    name = forms.CharField(widget=forms.TextInput(
+    first_name = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control mt-2',
             'type': 'text',
@@ -73,6 +76,13 @@ class UserForm(forms.ModelForm):
             'class': 'form-control mt-2',
             'type': 'text',
             'placeholder': 'Ingresa tu apellido'
+        }
+    ))
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'text',
+            'placeholder': 'Ingresa tu Nombre de usuario'
         }
     ))
     email = forms.CharField(widget=forms.TextInput(
@@ -89,6 +99,80 @@ class UserForm(forms.ModelForm):
             'placeholder': 'Ingresa la contraseña'
         }
     ))
+
     class Meta:
         model = User
-        fields = ('name', 'last_name', 'email', 'password')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password')
+
+
+class UserAdminForm(forms.ModelForm):
+
+    first_name = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'text',
+            'placeholder': 'Ingresa tu nombre'
+        }
+    ))
+    last_name = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'text',
+            'placeholder': 'Ingresa tu apellido'
+        }
+    ))
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'text',
+            'placeholder': 'Ingresa tu Nombre de usuario'
+        }
+    ))
+    is_superuser = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'text',
+            'placeholder': 'Ingresa el rol'
+        }
+    ))
+    email = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'email',
+            'placeholder': 'Ingresa el email'
+        }
+    ))
+    password = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'password',
+            'placeholder': 'Ingresa la contraseña'
+        }
+    ))
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username',
+                  'is_superuser', 'email', 'password')
+
+
+class LogInForm(AuthenticationForm):
+
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'text',
+            'placeholder': 'Ingresa tu nombre de usuario'
+        }
+    ))
+    password = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mt-2',
+            'type': 'password',
+            'placeholder': 'Ingresa la contraseña'
+        }
+    ))
+
+    class Meta:
+        model = User
+        fields = ('username', 'password')

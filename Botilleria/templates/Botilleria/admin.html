@@ -69,7 +69,9 @@
               <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">mail</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Administrador</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
@@ -77,9 +79,11 @@
             <tbody>
               {% for user in users %}
               <tr>
-                <td>{{user.name}}</td>
+                <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>
+                <td>{{user.username}}</td>
                 <td>{{user.email}}</td>
+                <td>{{user.is_superuser}}</td>
                 <td>
                   <a
                     type="submit"
