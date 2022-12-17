@@ -62,11 +62,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            ...
+                            <select class="form-select" aria-label="Default select example">
+                              <option selected>Selecciona el tipo de documento</option>
+                              <option value="1">Factura</option>
+                              <option value="2">Boleta</option>
+                            </select>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-success">Pagar</button>
+                            <a type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</a>
+                            <a type="button" class="btn btn-success" href="{% url 'save_product' %}">Pagar</a>
                           </div>
                         </div>
                       </div>

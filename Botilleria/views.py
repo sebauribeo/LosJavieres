@@ -1,11 +1,12 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from Botilleria.cart import Cart
 from Botilleria.forms import LogInForm, ProductForm, UserAdminForm, UserForm
-from Botilleria.models import Product
+from Botilleria.models import Product, Purchased_products, Ticket_purchase
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+import uuid
 
 
 def home(request):
@@ -187,6 +188,36 @@ def cleanCart(request):
         return redirect('cart')
     except Exception as e:
         print('No se pudo limpiar el carrito', e)
+
+
+def saveProducts(request):
+    try:
+        purchaseCode = uuid.uuid4()
+        if request.user.id == None:
+            messages.error(
+                request, 'Debes registrate antes de realizar el pago')
+            return redirect('new-user')
+        for key, value in request.session['cart'].items():
+            products = Purchased_products(
+                user_id=request.user,
+                product_id=Product(value['id']),
+                purchase_code=purchaseCode,
+                price=value['price'],
+                quantity=value['units'],
+            )
+            products.save()
+            print(products)
+            cart = Cart(request)
+            cart.clearAllProducts()
+            ticket = Ticket_purchase(
+                purchase_product_id=Purchased_products(products.id)
+            )
+            ticket.save()
+            messages.success(
+                request, 'Haz completado tu pago, el numero de orden es: ' + str(purchaseCode))
+        return redirect('home')
+    except Exception as e:
+        print('Productos no guardados', e)
 
 #  USUARIOS
 

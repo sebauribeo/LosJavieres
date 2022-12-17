@@ -28,4 +28,5 @@ urlpatterns = [
     path('cart/clearProduct/', views.cleanCart, name='clear'),
     path('cart/add/<int:pk>', views.addQuantityProduct, name='add_quantity'),
     path('cart/sub/<int:pk>', views.subQuantityProduct, name='sub_quantity'),
+    path('cart/pay', views.saveProducts, name='save_product'),
 ]
