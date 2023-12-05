@@ -4,4 +4,7 @@
 
 -Instalar paquetes
 
-* pip install fontawesome
+-Accesos administrador
+
+user: admin
+pass: admin
