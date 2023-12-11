@@ -1,17 +1,33 @@
 {% extends '../layout/base.html' %} {% block content %}
 
-<h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1">Panel Administrador</h1>
+<h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1">Panel
+  Administrador</h1>
 <section class="text-center">
   <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill active" id="pills-products-tab" data-bs-toggle="pill" data-bs-target="#pills-products" type="button" role="tab" aria-controls="pills-products" aria-selected="false">Administrar Productos</button>
+      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill active"
+        id="pills-products-tab" data-bs-toggle="pill" data-bs-target="#pills-products" type="button" role="tab"
+        aria-controls="pills-products" aria-selected="false">Administrar Productos</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-users-tab" data-bs-toggle="pill" data-bs-target="#pills-users" type="button" role="tab" aria-controls="pills-users" aria-selected="false">Administar Usuarios</button>
+      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-users-tab"
+        data-bs-toggle="pill" data-bs-target="#pills-users" type="button" role="tab" aria-controls="pills-users"
+        aria-selected="false">Administar Usuarios</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill"
+        id="pills-daily-report-tab" data-bs-toggle="pill" data-bs-target="#pills-daily-report" type="button" role="tab"
+        aria-controls="pills-daily-report" aria-selected="false">Reporte diario de ventas</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill"
+        id="pills-monthly-report-tab" data-bs-toggle="pill" data-bs-target="#pills-monthly-report" type="button"
+        role="tab" aria-controls="pills-monthly-report" aria-selected="false">Reporte mensual de ventas</button>
     </li>
   </ul>
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-products" role="tabpanel" aria-labelledby="pills-products-tab" tabindex="0">
+    <div class="tab-pane fade show active" id="pills-products" role="tabpanel" aria-labelledby="pills-products-tab"
+      tabindex="0">
       <section class="container">
         <a class="btn btn-primary btn-lg my-5 rounded-pill" href="{% url 'add_product' %}">
           Agregar producto
@@ -33,86 +49,152 @@
               <tr>
                 <td>{{product.name}}</td>
                 <td>{{product.price}}</td>
+                {% if product.stock > 10 %}
                 <td>{{product.stock}}</td>
+                {% else %}
+                <td class="text-danger">{{product.stock}}</td>
+                {% endif %}
                 <td>{{product.brand}}</td>
                 <td>
-                  <a
-                    type="submit"
-                    class="btn btn-success rounded-pill"
-                    href="{% url 'edit_product' pk=product.id %}"
-                    >Editar</a
-                  >
+                  <a type="submit" class="btn btn-success rounded-pill"
+                    href="{% url 'edit_product' pk=product.id %}">Editar</a>
                 </td>
                 <td>
                   <form action="{% url 'delete_product' pk=product.id %}" method="post">
                     {% csrf_token %}
-                    <button
-                      type="submit"
-                      class="btn btn-danger rounded-pill"
-                      >Eliminar</button>
+                    <button type="submit" class="btn btn-danger rounded-pill">Eliminar</button>
                   </form>
                 </td>
               </tr>
               {% empty %}
-                <h1 class="text-center m-5">No hay Productos agregados</h1>
+              <h1 class="text-center m-5">No hay Productos agregados</h1>
               {% endfor %}
             </tbody>
           </table>
         </main>
       </section>
+      {% for product in products %}
+      {% if product.stock <= 10 %} <div class="alert alert-danger alert-dismissible fade show fixed-bottom"
+        role="alert">
+        El producto: {{product.name}} con id n°: {{product.id}} ha excedido el límite mínimo de stock.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="tab-pane fade show" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab" tabindex="0">
-      <section class="container">
-        <main class="container text-center mt-5">
+    {% endif %}
+    {% endfor %}
+  </div>
+  <div class="tab-pane fade show" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab" tabindex="0">
+    <section class="container">
+      <main class="container text-center mt-5">
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Mail</th>
+              <th scope="col">Administrador</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.is_superuser}}</td>
+              <td>
+                <a type="submit" class="btn btn-success rounded-pill" href="{% url 'edit_user' pk=user.id %}">Editar</a>
+              </td>
+              <td>
+                <form action="{% url 'delete_user' pk=user.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger rounded-pill">Eliminar</button>
+                </form>
+              </td>
+            </tr>
+            {% empty %}
+            <h1 class="text-center m-5">No hay Productos agregados</h1>
+            {% endfor %}
+          </tbody>
+        </table>
+      </main>
+    </section>
+  </div>
+  <div class="tab-pane fade show" id="pills-daily-report" role="tabpanel" aria-labelledby="pills-daily-report-tab"
+    tabindex="0">
+    <section class="container">
+      <main class="container text-center mt-5">
+        <div class="card bg bg-dark my-5">
+          <h5 class="card-header text-white">Total ventas diarias</h5>
+          <div class="card-body">
+            <p class="card-text text-white">{{ daily_purchased_products|length }}</p>
+          </div>
+        </div>
+        <div>
           <table class="table table-dark">
             <thead>
               <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Mail</th>
-                <th scope="col">Administrador</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
+                <th scope="col">Producto</th>
+                <th scope="col">N° Ventas diarias</th>
               </tr>
             </thead>
             <tbody>
-              {% for user in users %}
+              {% for product_detail in daily_product_details %}
               <tr>
-                <td>{{user.first_name}}</td>
-                <td>{{user.last_name}}</td>
-                <td>{{user.username}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.is_superuser}}</td>
-                <td>
-                  <a
-                    type="submit"
-                    class="btn btn-success rounded-pill"
-                    href="{% url 'edit_user' pk=user.id %}"
-                    >Editar</a
-                  >
-                </td>
-                <td>
-                  <form action="{% url 'delete_user' pk=user.id %}" method="post">
-                    {% csrf_token %}
-                    <button
-                      type="submit"
-                      class="btn btn-danger rounded-pill"
-                      >Eliminar</button>
-                  </form>
-                </td>
+                <td>{{ product_detail.product_id__name }}</td>
+                <td>{{ product_detail.total_quantity }}</td>
               </tr>
-              {% empty %}
-                <h1 class="text-center m-5">No hay Productos agregados</h1>
               {% endfor %}
             </tbody>
           </table>
-        </main>
-
-      
-      </section>
-    </div>
+        </div>
+        <div class="alert alert-dark mt-3" role="alert">
+          Total ventas hasta {{dateNow}}
+          <h1 class="text-dark">
+            ${{ daily_total_spent }}
+          </h1>
+        </div>
+      </main>
+    </section>
   </div>
-
-
-{% endblock %}
+  <div class="tab-pane fade show" id="pills-monthly-report" role="tabpanel" aria-labelledby="pills-monthly-report-tab"
+    tabindex="0">
+    <section class="container">
+      <main class="container text-center mt-5">
+        <div class="card bg bg-dark my-5">
+          <h5 class="card-header text-white">Total ventas mensuales</h5>
+          <div class="card-body">
+            <p class="card-text text-white">{{ monthly_purchased_products|length }}</p>
+          </div>
+        </div>
+        <div>
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">N° Ventas mensuales</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product_detail in monthly_product_details %}
+              <tr>
+                <td>{{ product_detail.product_id__name }}</td>
+                <td>{{ product_detail.total_quantity }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-dark mt-3" role="alert">
+          Total ventas del mes {{month_now}} hasta {{dateNow}}
+          <h1 class="text-dark">
+            ${{ monthly_total_spent }}
+          </h1>
+        </div>
+      </main>
+    </section>
+  </div>
+  {% endblock %}

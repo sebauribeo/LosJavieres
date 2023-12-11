@@ -7,6 +7,7 @@ class Product(models.Model):
         image = models.CharField(max_length=500)
         price = models.IntegerField()
         stock = models.IntegerField()
+        min_stock = models.IntegerField(default=10)
         details = models.CharField(max_length=500)
         brand = models.CharField(max_length=50)
         category = models.CharField(max_length=100)

@@ -62,7 +62,8 @@ class Cart:
             if id in self.cart.keys():
                 self.cart[id]['units'] += 1
                 self.cart[id]['price'] += product.price
-                self.saveCart()
+                if product.stock >= self.cart[id]['units']:
+                    self.saveCart()
         except Exception as e:
             print('No se disminuyo la cantidad del producto', e)
 
