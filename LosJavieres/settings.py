@@ -20,15 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# Configuración del remitente del correo electrónico
-DEFAULT_FROM_EMAIL = 'seba.uribe.dev@gmail.com' 
-
-# Configuración de contraseña del correo electrónico
-EMAIL_PASSWORD = '@Floki69kali69dex'  
-
-# Configuración de la lista de destinatarios para las alertas
-NOTIFICATION_EMAIL = ['chefsebauribe@gmail.com']  
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
 
