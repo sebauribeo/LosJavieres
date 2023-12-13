@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -154,7 +154,7 @@ if not DEBUG:
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    
+
 LOGIN_URL = '/login'
 
 # Default primary key field type
