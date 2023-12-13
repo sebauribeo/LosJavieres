@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from Botilleria.cart import Cart
 from Botilleria.forms import LogInForm, ProductForm, UserAdminForm, UserForm
-from Botilleria.models import Product, Purchased_products, Ticket_purchase
+from Botilleria.models import Product, Purchase_invoice, Purchased_products, Ticket_purchase
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -228,7 +228,8 @@ def saveProducts(request):
         if request.user.id is None:
             messages.error(request, 'Debes registrarte antes de realizar el pago')
             return redirect('new-user')
-
+        purchase_type = request.POST.get('purchase_type')
+        print(purchase_type)
         for key, value in request.session['cart'].items():
             product_id = value['id']
             quantity = value['units']
@@ -243,9 +244,13 @@ def saveProducts(request):
                 quantity=quantity,
             )
             purchased_product.save()
-            # Crear el objeto Ticket_purchase
-            ticket = Ticket_purchase(purchase_product_id=purchased_product)
-            ticket.save()
+            # Guardar en Ticket_purchase o Purchase_invoice según la elección del usuario
+            if purchase_type == 'boleta':
+                ticket = Ticket_purchase(purchase_product_id=purchased_product)
+                ticket.save()
+            elif purchase_type == 'factura':
+                invoice = Purchase_invoice(purchase_product_id=purchased_product)
+                invoice.save()
             # Actualizar el stock del producto
             product.stock -= quantity
             product.save()
