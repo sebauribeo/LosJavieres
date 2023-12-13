@@ -80,13 +80,25 @@ WSGI_APPLICATION = 'LosJavieres.wsgi.application'
 
 
 #  CONFIG RENDER LOCAL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'los_javieres_db',
+#         'USER': 'user',
+#         'PASSWORD': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW',
+#         'HOST': 'dpg-clt0rqtcm5oc739dre10-a.oregon-postgres.render.com',
+#         'PORT': '5432',
+#     }
+# }
+
+#  CONFIG RENDER DEPLOY
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'los_javieres_db',
         'USER': 'user',
         'PASSWORD': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW',
-        'HOST': 'dpg-clt0rqtcm5oc739dre10-a.oregon-postgres.render.com',
+        'HOST': 'postgres://user:BRexKUzJzayDMbdLI9uh47eIURh5xYlW@dpg-clt0rqtcm5oc739dre10-a.oregon-postgres.render.com/los_javieres_db',
         'PORT': '5432',
     }
 }
