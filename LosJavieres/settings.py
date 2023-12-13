@@ -79,30 +79,17 @@ WSGI_APPLICATION = 'LosJavieres.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-# CONFIG RENDER DEPLOY
+#  CONFIG RENDER LOCAL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'los_javieres_db',
         'USER': 'user',
         'PASSWORD': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW',
-        'HOST': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW@dpg-clt0rqtcm5oc739dre10-a/los_javieres_db',
+        'HOST': 'dpg-clt0rqtcm5oc739dre10-a.oregon-postgres.render.com',
         'PORT': '5432',
     }
 }
-
-
-#  CONFIG RENDER LOCAL
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'los_javieres_db',
-#         'USER': 'user',
-#         'PASSWORD': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW',
-#         'HOST': 'dpg-clt0rqtcm5oc739dre10-a.oregon-postgres.render.com',
-#         'PORT': '5432',
-#     }
-# }
 
 
 # Password validation
