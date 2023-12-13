@@ -9,12 +9,14 @@ contourpy==1.2.0
 cycler==0.12.1
 debugpy==1.8.0
 decorator==5.1.1
+dj-database-url==2.1.0
 Django==4.1.4
 executing==2.0.1
 Faker==18.9.0
 fontawesome==5.10.1.post1
 fontawesomefree==6.2.1
 fonttools==4.45.1
+gunicorn==21.2.0
 ipykernel==6.27.1
 ipython==8.18.1
 jedi==0.19.1
@@ -50,5 +52,7 @@ sqlparse==0.4.3
 stack-data==0.6.3
 tornado==6.4
 traitlets==5.14.0
+typing_extensions==4.9.0
 tzdata==2023.3
 wcwidth==0.2.12
+whitenoise==6.6.0
