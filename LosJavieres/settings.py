@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'los_javieres_db',
         'USER': 'user',
         'PASSWORD': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW',
-        'HOST': 'postgres://user:BRexKUzJzayDMbdLI9uh47eIURh5xYlW@dpg-clt0rqtcm5oc739dre10-a/los_javieres_db',
+        'HOST': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW@dpg-clt0rqtcm5oc739dre10-a/los_javieres_db',
         'PORT': '5432',
     }
 }
