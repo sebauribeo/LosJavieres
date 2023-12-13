@@ -21,16 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
+#SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
 
 
-ALLOWED_HOSTS = []
-
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST").split(" ")
 
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
@@ -87,11 +84,9 @@ WSGI_APPLICATION = 'LosJavieres.wsgi.application'
 import dj_database_url
 
 #  CONFIG RENDER DEPLOY
+database_url = os.environ.get("DATABASE_URL")
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://user:BRexKUzJzayDMbdLI9uh47eIURh5xYlW@dpg-clt0rqtcm5oc739dre10-a/los_javieres_db',
-        conn_max_age=600
-    )
+    'default': dj_database_url.parse(database_url)
 }
 
 
