@@ -88,7 +88,6 @@ import dj_database_url
 #  CONFIG RENDER DEPLOY
 DATABASES = {
     'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
         default='postgres://user:BRexKUzJzayDMbdLI9uh47eIURh5xYlW@dpg-clt0rqtcm5oc739dre10-a/los_javieres_db',
         conn_max_age=600
     )
@@ -119,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC-3'
 
 USE_I18N = True
 
@@ -152,8 +151,6 @@ LOGIN_URL = '/login'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-PORT = 'PORT'
 
 #####LOCAL#####
 # DEBUG = True
