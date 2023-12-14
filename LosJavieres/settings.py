@@ -21,8 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
 SECRET_KEY = os.environ.get("SECRET_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
 
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'LosJavieres.wsgi.application'
 
 import dj_database_url
 
-#  CONFIG RENDER DEPLOY
+# #  CONFIG RENDER DEPLOY
 database_url = os.environ.get("DATABASE_URL")
 DATABASES = {
     'default': dj_database_url.parse(database_url)
@@ -149,9 +149,8 @@ LOGIN_URL = '/login'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #####LOCAL#####
-# DEBUG = True
 
-# #  CONFIG RENDER LOCAL
+#  CONFIG RENDER LOCAL
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -162,3 +161,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         'PORT': '5432',
 #     }
 # }
+
+# DEBUG = True
+
+# SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
+
+# ALLOWED_HOSTS = []

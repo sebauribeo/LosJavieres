@@ -49,45 +49,47 @@ def logIn(request):
 
 @login_required
 def administrator(request):
-    products = Product.objects.all()
-    users = User.objects.all()
-    date_now = datetime.now()
+    try:
+        products = Product.objects.all()
+        users = User.objects.all()
+        date_now = datetime.now()
 
-    # Ventas diarias
-    daily_purchased_products = Purchased_products.objects.filter(date=datetime.now().strftime('%Y-%m-%d'))
-    daily_total_spent = sum(daily_purchased_products.price for daily_purchased_products in daily_purchased_products)
-    daily_product_details = (
-        Purchased_products.objects
-        .filter(date=datetime.now().strftime('%Y-%m-%d'))
-        .exclude(product_id__isnull=True)
-        .values('product_id__name', 'product_id')
-        .annotate(total_quantity=Sum('quantity'))
-    )
-    # Ventas mensuales
-    locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  # Puedes ajustar el código de idioma según tu configuración
-    monthly_purchased_products = Purchased_products.objects.filter(date__month=date_now.month)
-    monthly_total_spent = sum(monthly_purchased_products.price for monthly_purchased_products in monthly_purchased_products)
-    monthly_product_details = (
-        monthly_purchased_products
-        .exclude(product_id__isnull=True)
-        .values('product_id__name', 'product_id')
-        .annotate(total_quantity=Sum('quantity'))
-    )
+        # Ventas diarias
+        daily_purchased_products = Purchased_products.objects.filter(date=datetime.now().strftime('%Y-%m-%d'))
+        daily_total_spent = sum(daily_purchased_products.price for daily_purchased_products in daily_purchased_products)
+        daily_product_details = (
+            Purchased_products.objects
+            .filter(date=datetime.now().strftime('%Y-%m-%d'))
+            .exclude(product_id__isnull=True)
+            .values('product_id__name', 'product_id')
+            .annotate(total_quantity=Sum('quantity'))
+        )
+        # Ventas mensuales
+        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  # Puedes ajustar el código de idioma según tu configuración
+        monthly_purchased_products = Purchased_products.objects.filter(date__month=date_now.month)
+        monthly_total_spent = sum(monthly_purchased_products.price for monthly_purchased_products in monthly_purchased_products)
+        monthly_product_details = (
+            monthly_purchased_products
+            .exclude(product_id__isnull=True)
+            .values('product_id__name', 'product_id')
+            .annotate(total_quantity=Sum('quantity'))
+        )
 
-    context = {
-        'products': products,
-        'users': users,
-        'daily_total_spent': daily_total_spent,
-        'daily_purchased_products': daily_purchased_products,
-        'daily_product_details': daily_product_details,
-        'monthly_purchased_products': monthly_purchased_products,
-        'monthly_total_spent': monthly_total_spent,
-        'monthly_product_details': monthly_product_details,
-        'date_now': date_now - timedelta(hours=3),
-        'month_now': calendar.month_name[date_now.month],
-    }
-    return render(request, 'Botilleria/admin.html', context)
-
+        context = {
+            'products': products,
+            'users': users,
+            'daily_total_spent': daily_total_spent,
+            'daily_purchased_products': daily_purchased_products,
+            'daily_product_details': daily_product_details,
+            'monthly_purchased_products': monthly_purchased_products,
+            'monthly_total_spent': monthly_total_spent,
+            'monthly_product_details': monthly_product_details,
+            'date_now': date_now - timedelta(hours=3),
+            'month_now': calendar.month_name[date_now.month],
+        }
+        return render(request, 'Botilleria/admin.html', context)
+    except Exception as e:
+        print('Error admin'.format(str(e)))
 #  PRODUCTS
 
 
