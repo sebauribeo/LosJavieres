@@ -89,7 +89,7 @@ def administrator(request):
         }
         return render(request, 'Botilleria/admin.html', context)
     except Exception as e:
-        print('Error admin'.format(str(e)))
+        print('Error admin', e)
 #  PRODUCTS
 
 
