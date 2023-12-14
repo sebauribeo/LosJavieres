@@ -17,19 +17,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
-
-
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST").split(" ")
-
-
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # Application definition
@@ -77,19 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'LosJavieres.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-import dj_database_url
-
-# #  CONFIG RENDER DEPLOY
-database_url = os.environ.get("DATABASE_URL")
-DATABASES = {
-    'default': dj_database_url.parse(database_url)
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -129,12 +103,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 # This setting tells Django at which URL static files are going to be served to the user.
-# Here, they well be accessible at your-domain.onrender.com/static/...
 STATIC_URL = '/static/'
 
-
-# Tell Django to copy statics to the `staticfiles` directory
-# in your application directory on Render.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Turn on WhiteNoise storage backend that takes care of compressing static files
@@ -150,7 +120,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #####LOCAL#####
 
-#  CONFIG RENDER LOCAL
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -167,3 +136,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
 
 # ALLOWED_HOSTS = []
+
+
+######PROD_RENDER######
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
+
+
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST").split(" ")
+
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+import dj_database_url
+
+# #  CONFIG RENDER DEPLOY
+database_url = os.environ.get("DATABASE_URL")
+DATABASES = {
+    'default': dj_database_url.parse(database_url)
+}

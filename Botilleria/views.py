@@ -90,8 +90,9 @@ def administrator(request):
         return render(request, 'Botilleria/admin.html', context)
     except Exception as e:
         print('Error admin', e)
-#  PRODUCTS
 
+
+#  PRODUCTS
 
 def Products(request):
     allProduct = Product.objects.all()
@@ -170,8 +171,8 @@ def deleteProduct(request, pk):
     except Exception as e:
         print('Producto no eliminado ', e)
 
-#  CARRITO
 
+#  CARRITO
 
 def addCartProducts(request, pk):
     try:
@@ -231,7 +232,6 @@ def saveProducts(request):
             messages.error(request, 'Debes registrarte antes de realizar el pago')
             return redirect('new-user')
         purchase_type = request.POST.get('purchase_type')
-        print(purchase_type)
         for key, value in request.session['cart'].items():
             product_id = value['id']
             quantity = value['units']
@@ -270,7 +270,6 @@ def saveProducts(request):
 
 
 #  USUARIOS
-
 
 def signOut(request):
     messages.success(request, 'Haz terminado tu sesion...')
