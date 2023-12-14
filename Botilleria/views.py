@@ -61,7 +61,7 @@ def administrator(request):
             Purchased_products.objects
             .filter(date=datetime.now().strftime('%Y-%m-%d'))
             .exclude(product_id__isnull=True)
-            .values('product_id__name', 'product_id')
+            .values('product_id__name')
             .annotate(total_quantity=Sum('quantity'))
         )
         # Ventas mensuales
@@ -71,7 +71,7 @@ def administrator(request):
         monthly_product_details = (
             monthly_purchased_products
             .exclude(product_id__isnull=True)
-            .values('product_id__name', 'product_id')
+            .values('product_id__name')
             .annotate(total_quantity=Sum('quantity'))
         )
 
