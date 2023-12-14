@@ -65,7 +65,7 @@ def administrator(request):
             .annotate(total_quantity=Sum('quantity'))
         )
         # Ventas mensuales
-        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  # Puedes ajustar el código de idioma según tu configuración
+        # locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  # Puedes ajustar el código de idioma según tu configuración
         monthly_purchased_products = Purchased_products.objects.filter(date__month=date_now.month)
         monthly_total_spent = sum(monthly_purchased_products.price for monthly_purchased_products in monthly_purchased_products)
         monthly_product_details = (
