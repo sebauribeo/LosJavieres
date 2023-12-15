@@ -78,7 +78,6 @@ h1 {
   align-items: center;
   justify-content: space-between;
   flex-flow: column nowrap;
-  font-family: monospace;
 }
 
 .cardOffers {
