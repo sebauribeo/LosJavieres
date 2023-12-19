@@ -120,42 +120,42 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #####LOCAL#####
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'los_javieres_db',
-        'USER': 'user',
-        'PASSWORD': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW',
-        'HOST': 'dpg-clt0rqtcm5oc739dre10-a.oregon-postgres.render.com',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'los_javieres_db',
+#         'USER': 'user',
+#         'PASSWORD': 'BRexKUzJzayDMbdLI9uh47eIURh5xYlW',
+#         'HOST': 'dpg-clt0rqtcm5oc739dre10-a.oregon-postgres.render.com',
+#         'PORT': '5432',
+#     }
+# }
 
-DEBUG = True
+# DEBUG = True
 
-SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
+# SECRET_KEY = 'django-insecure-xy1bkwhv3&lw#o-p8ox$*9-3-5cad(#m7q&7e5qd6x_4wy8+#h'
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 ######PROD_RENDER######
 
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get("DEBUG", "False").lower() == "True"
 
 
-# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST").split(" ")
 
-# # Database
-# # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# import dj_database_url
+import dj_database_url
 
-# # #  CONFIG RENDER DEPLOY
-# database_url = os.environ.get("DATABASE_URL")
-# DATABASES = {
-#     'default': dj_database_url.parse(database_url)
-# }
+# #  CONFIG RENDER DEPLOY
+database_url = os.environ.get("DATABASE_URL")
+DATABASES = {
+    'default': dj_database_url.parse(database_url)
+}
