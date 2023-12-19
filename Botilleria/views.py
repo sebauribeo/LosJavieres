@@ -71,8 +71,9 @@ def administrator(request):
         monthly_purchased_products = Purchased_products.objects.filter(date__month=date_now.month)
         monthly_total_spent = sum(monthly_purchased_products.price for monthly_purchased_products in monthly_purchased_products)
         monthly_product_details = (
-            monthly_purchased_products
+            Purchased_products.objects   
             .exclude(product_id__isnull=True)
+            .filter(date__month=date_now.month)
             .values('product_id__name')
             .annotate(total_quantity=Sum('quantity'))
         )
