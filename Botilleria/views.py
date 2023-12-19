@@ -4,12 +4,11 @@ from Botilleria.forms import LogInForm, ProductForm, UserAdminForm, UserForm
 from Botilleria.models import Product, Purchase_invoice, Purchased_products, Ticket_purchase
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login, logout, authenticate
 from datetime import datetime, timedelta
 from django.db.models import Sum
 import calendar
-import locale
 import uuid
 
 def home(request):
@@ -47,6 +46,9 @@ def logIn(request):
         print('Usuario no encontrado ', e)
 
 
+
+
+@user_passes_test(lambda u: u.is_superuser)
 @login_required
 def administrator(request):
     try:
@@ -116,6 +118,7 @@ def Products(request):
     return render(request, 'Botilleria/products.html', context)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 @login_required
 def addProduct(request):
     try:
@@ -141,6 +144,7 @@ def detailProduct(request, pk):
         print('El producto seleccionado no se actualizo', e)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 @login_required
 def editProduct(request, pk):
     try:
@@ -159,6 +163,7 @@ def editProduct(request, pk):
         print('producto no editado', e)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 @login_required
 def deleteProduct(request, pk):
     try:
@@ -300,6 +305,7 @@ def newUser(request):
         print('Error en user', e)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 @login_required
 def editUser(request, pk):
     try:
@@ -317,7 +323,7 @@ def editUser(request, pk):
     except Exception as e:
         print('producto no editado', e)
 
-
+@user_passes_test(lambda u: u.is_superuser)
 @login_required
 def deleteUser(request, pk):
     try:
