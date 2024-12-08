@@ -14,8 +14,8 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark mx-5">
+      <div class="container-fluid mx-5">
         <a class="navbar-brand" href="{% url 'home' %}">
           <img class="imgNav" src="{% static 'img/logoM.png' %}" alt="" />
         </a>
@@ -24,18 +24,18 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item pt-3">
+          <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+            <li class="nav-item pt-3 h2 mx-2 imgNav">
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i
-                  class="fa-solid fa-house me-1"></i></i>Home</a>
+                  class="fa-solid fa-house me-1"></i>Home</a>
             </li>
-            <li class="nav-item pt-3">
+            <li class="nav-item pt-3 h2 mx-2 imgNav">
               <a class="nav-link active" href="{% url 'products' %}">Productos</a>
             </li>
-            <li class="nav-item pt-3">
+            <li class="nav-item pt-3 h2 mx-2 imgNav">
               <a class="nav-link active" href="{% url 'login' %}">Log in</a>
             </li>
-            <li class="nav-item pt-3">
+            <li class="nav-item pt-3 h2 mx-2 imgNav">
               <a class="nav-link active" href="{% url 'cart' %}"></i>Carro de compras
                 {% if request.session.cart.items %}
                 <span class="position-absolute top-3 translate-middle badge rounded-pill bg-danger">
@@ -46,17 +46,17 @@
               </a>
             </li>
             {% if user.is_superuser %}
-            <li class="nav-item pt-3">
+            <li class="nav-item pt-3 h2 mx-2 imgNav">
               <a class="nav-link text-warning" href="{% url 'administrator' %}">Panel administrador</a>
             </li>
             {% endif %}
             {% if user.is_authenticated %}
-            <li class="nav-item pt-3">
+            <li class="nav-item pt-3 h2 mx-2 imgNav">
               <a class="nav-link active" href="{% url 'logout' %}">Log out</a>
             </li>
             <li class="nav-item bg-white rounded-circle">
               <h5 class="text-center m-0"><i class="fa-solid fa-user text-black pt-3"></i></h5>
-              <p class="text-black px-3">{{request.user}}</span>
+              <p class="text-black px-3 h4">{{request.user}}</span>
             </li>
             {% endif %}
           </ul>
@@ -68,7 +68,7 @@
     <img class="imgBackground" src="{% static 'img/background.png' %}" alt="" />
   </main>
   {% block content %} {% endblock %}
-  <footer class="footer mt-5">
+  <footer class="footer">
     <div class="row mx-auto">
       <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <img class="imgFooter m-4 w-75" src="{% static 'img/background.png' %}" alt="" />

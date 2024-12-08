@@ -160,14 +160,14 @@ class LogInForm(AuthenticationForm):
 
     username = forms.CharField(widget=forms.TextInput(
         attrs={
-            'class': 'form-control mt-2',
+            'class': 'form-control mt-3',
             'type': 'text',
             'placeholder': 'Ingresa tu nombre de usuario'
         }
     ))
     password = forms.CharField(widget=forms.TextInput(
         attrs={
-            'class': 'form-control mt-2',
+            'class': 'form-control mt-3',
             'type': 'password',
             'placeholder': 'Ingresa la contraseña'
         }

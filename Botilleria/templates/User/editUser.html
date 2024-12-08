@@ -1,8 +1,12 @@
 {% extends '../layout/base.html' %} {% block content %}
 
-<h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1">Nuevo Usuario</h1>
+<h1
+  class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1"
+>
+  Nuevo Usuario
+</h1>
 <section class="container">
-  <form method="POST" class="bg-dark container p-4 text-white">
+  <form method="POST" class="container p-4 text-white formEditUser">
     {% csrf_token %} {{ form.as_p }}
     <div class="text-center">
       <button type="submit" class="btn btn-success">Actualizar</button>

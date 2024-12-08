@@ -1,14 +1,24 @@
-{% extends '../layout/base.html' %} 
-{% block content %}
-    <h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1">Log In</h1>
-    <section class="container">
-        <a type="submit" class="btn btn-success rounded-pill w-100 my-5" href="{% url 'new-user' %}">Registrate</a>
-        <form method="POST" class="bg-dark container p-4 text-white">
-          {% csrf_token %} {{ form.as_p }}
-          <h1 class="text-center bg-danger rounded-pill my-3">{{error}}</h1>
-          <div class="text-center">
-            <button type="submit" class="btn btn-success">Comenzar sesion</button>
-          </div>
-        </form>
-    </section>
+{% extends '../layout/base.html' %} {% block content %}
+<h1
+  class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1"
+>
+  Log In
+</h1>
+<section class="container my-5">
+  <form method="POST" class="container p-4 text-white my-5 formLogIn">
+    {% csrf_token %} {{ form.as_p }}
+    <h1 class="text-center bg-danger rounded-pill my-3">{{error}}</h1>
+    <div class="text-center">
+      <button type="submit" class="btn btn-success my-5 btn-lg">
+        Comenzar sesion
+      </button>
+    </div>
+  </form>
+  <a
+    type="submit"
+    class="btn btn-success rounded-pill w-100 my-5 btn-lg"
+    href="{% url 'new-user' %}"
+    >Registrate</a
+  >
+</section>
 {% endblock %}

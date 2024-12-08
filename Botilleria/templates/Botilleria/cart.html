@@ -3,8 +3,8 @@
 
     <h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1">Carro de compras<i class="fa-solid fa-cart-shopping ms-3"></i></h1>
 
-        <main class="container text-center">
-            <table class="table table-dark my-5">
+        <main class="container text-center my-5">
+            <table class="table my-5 cartTable text-white">
               <thead>
                 <tr>
                   <th scope="col">Nombre</th>
@@ -36,22 +36,20 @@
                     </form>
                   </td>
                 </tr>
-                {% empty %}
-                  <h1 class="text-center m-5">No hay Productos agregados</h1>
                 {% endfor %}
                 {% endif %}
               </tbody>
             </table>
           
-              <div class="card text-bg-dark my-5">
-                <div class="card-body">
+              <div class="card my-5 formCart text-white">
+                <div class="card-body my-5">
                   <div class="row text-center p-5">
                     <div class="col-4">
                       <h1 class="card-title border-bottom border-5 border-warning">Total Compra</h1>
                       <h2 class="card-text">$ {{totalPrice}}</h2>
                     </div>
-                    <div class="col-4 my-auto"><a href="{% url 'clear' %}" class="btn btn-primary">Limpiar carro de compra</a></div>
-                    <div class="col-4 my-auto"><a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <div class="col-4 my-auto"><a href="{% url 'clear' %}" class="btn btn-primary btn-lg">Limpiar carro de compra</a></div>
+                    <div class="col-4 my-auto"><a type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       Validar compra
                     </a></div>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

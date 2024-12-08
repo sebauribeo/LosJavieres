@@ -1,7 +1,7 @@
 {% extends '../layout/base.html' %} {% block content %} {% load static %}
 
-<section class="container-fluid mt-3 p-0">
-  <div
+<section class="container-fluid my-5 p-0">
+  <!-- <div
     id="carouselExampleSlidesOnly"
     class="carousel slide"
     data-bs-ride="carousel"
@@ -29,15 +29,15 @@
         />
       </div>
     </div>
-  </div>
+  </div> -->
 
   <h1
-    class="mt-5 container text-center border border-5 border-warning border-start-0 border-end-0 bg-dark p-1"
+    class="my-5 container text-center border border-5 border-warning border-start-0 border-end-0 bg-dark p-1"
   >
     Ofertas y promociones
   </h1>
 
-  <div class="productOffers my-5 container">
+  <div class="productOffers my-5 container-fluid mb-5">
     <div class="cardOffers x mandatory-scroll-snapping">
       {% for product in promo %}
 

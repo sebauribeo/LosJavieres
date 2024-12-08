@@ -1,23 +1,62 @@
 {% extends '../layout/base.html' %} {% block content %}
 
-<h1 class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1">Panel Administrador</h1>
+<h1
+  class="container text-center my-5 border border-5 border-warning border-start-0 border-end-0 p-1"
+>
+  Panel Administrador
+</h1>
 <section class="text-center">
-  <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+  <ul
+    class="nav nav-pills justify-content-center"
+    id="pills-tab"
+    role="tablist"
+  >
     <li class="nav-item" role="presentation">
-      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill active" id="pills-products-tab" data-bs-toggle="pill" data-bs-target="#pills-products" type="button" role="tab" aria-controls="pills-products" aria-selected="false">Administrar Productos</button>
+      <button
+        class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill active"
+        id="pills-products-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-products"
+        type="button"
+        role="tab"
+        aria-controls="pills-products"
+        aria-selected="false"
+      >
+        Administrar Productos
+      </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill" id="pills-users-tab" data-bs-toggle="pill" data-bs-target="#pills-users" type="button" role="tab" aria-controls="pills-users" aria-selected="false">Administar Usuarios</button>
+      <button
+        class="btn btn-warning text-dark border border-3 border-light mx-4 rounded-pill"
+        id="pills-users-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-users"
+        type="button"
+        role="tab"
+        aria-controls="pills-users"
+        aria-selected="false"
+      >
+        Administar Usuarios
+      </button>
     </li>
   </ul>
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-products" role="tabpanel" aria-labelledby="pills-products-tab" tabindex="0">
+    <div
+      class="tab-pane fade show active"
+      id="pills-products"
+      role="tabpanel"
+      aria-labelledby="pills-products-tab"
+      tabindex="0"
+    >
       <section class="container">
-        <a class="btn btn-primary btn-lg my-5 rounded-pill" href="{% url 'add_product' %}">
+        <a
+          class="btn btn-primary btn-lg my-5 rounded-pill"
+          href="{% url 'add_product' %}"
+        >
           Agregar producto
         </a>
         <main class="container text-center">
-          <table class="table table-dark">
+          <table class="table tableAdmin text-white">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
@@ -44,27 +83,35 @@
                   >
                 </td>
                 <td>
-                  <form action="{% url 'delete_product' pk=product.id %}" method="post">
+                  <form
+                    action="{% url 'delete_product' pk=product.id %}"
+                    method="post"
+                  >
                     {% csrf_token %}
-                    <button
-                      type="submit"
-                      class="btn btn-danger rounded-pill"
-                      >Eliminar</button>
+                    <button type="submit" class="btn btn-danger rounded-pill">
+                      Eliminar
+                    </button>
                   </form>
                 </td>
               </tr>
               {% empty %}
-                <h1 class="text-center m-5">No hay Productos agregados</h1>
+              <h1 class="text-center m-5">No hay Productos agregados</h1>
               {% endfor %}
             </tbody>
           </table>
         </main>
       </section>
     </div>
-    <div class="tab-pane fade show" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab" tabindex="0">
+    <div
+      class="tab-pane fade show"
+      id="pills-users"
+      role="tabpanel"
+      aria-labelledby="pills-users-tab"
+      tabindex="0"
+    >
       <section class="container">
         <main class="container text-center mt-5">
-          <table class="table table-dark">
+          <table class="table tableAdmin text-white">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
@@ -93,26 +140,26 @@
                   >
                 </td>
                 <td>
-                  <form action="{% url 'delete_user' pk=user.id %}" method="post">
+                  <form
+                    action="{% url 'delete_user' pk=user.id %}"
+                    method="post"
+                  >
                     {% csrf_token %}
-                    <button
-                      type="submit"
-                      class="btn btn-danger rounded-pill"
-                      >Eliminar</button>
+                    <button type="submit" class="btn btn-danger rounded-pill">
+                      Eliminar
+                    </button>
                   </form>
                 </td>
               </tr>
               {% empty %}
-                <h1 class="text-center m-5">No hay Productos agregados</h1>
+              <h1 class="text-center m-5">No hay Productos agregados</h1>
               {% endfor %}
             </tbody>
           </table>
         </main>
-
-      
       </section>
     </div>
   </div>
 
-
-{% endblock %}
+  {% endblock %}
+</section>
